@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -13,15 +14,14 @@
 @if (Auth::check() && Auth::user()->isAdmin())
     <x-app-layout>
         <x-slot name="header">
-
         </x-slot>
 
-        <div class="py-6">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
+        <div class="py-6 bg-success-subtle  ">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  ">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4 " style="height: 90vh">
 
-                    <h3 class="display-5 text-center ">Regular users</h3>
-                    <form action="{{ route('register') }}"><button class="btn btn-primary mt-4 mb-4">Add new user</button></form>
+                    <h3 class="display-5 text-center text-success opacity-50">Users</h3>
+                    <form action="{{ route('users.register') }}"><button class="btn btn-primary mt-4 mb-4">Add new user</button></form>
 
                     <table class="table">
                         <thead>
@@ -78,9 +78,7 @@
 
 @else {  <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

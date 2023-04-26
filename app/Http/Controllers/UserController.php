@@ -73,10 +73,7 @@ class UserController extends Controller
      */
     public function destroy(User $user,Request $request)
     {
-
-
         $redirectPage = $this->calculateRedirectPage($request->perPage, $request->total, $request->currentPage);
-
         $user->delete();
         return redirect()->route('dashboard', ['page' => $redirectPage]);
 

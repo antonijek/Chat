@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('register', [UserController::class, 'create'])->name('register');
+Route::get('register', [UserController::class, 'create'])->name('users.register');
 Route::post('register', [UserController::class, 'store']);
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
