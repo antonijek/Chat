@@ -18,7 +18,11 @@
 <x-app-layout>
     <x-slot name="header">
     </x-slot>
-    <div class="container bg-success-subtle w-25 mt-4 mb-2 rounded p-3 min-vh-100 d-flex flex-column justify-content-end">
+    <div>
+        <a class="btn btn-success ml-4 mt-2" href="{{route('connection.index') }}">
+            Back
+        </a>
+        <div class="container bg-success-subtle w-25 mb-2 rounded p-3 d-flex flex-column justify-content-end" style="min-height: 80vh;">
             <p class="text-center text-success h2">Chat room</p>
             @foreach(json_decode($connection->messages) as $message)
                 <p class="{{$message->sender===Auth::user()->firstName?'text-end h6':'text-start h6'}}">{{$message->sender===Auth::user()->firstName?'me':$message->sender}}</p>
@@ -39,6 +43,7 @@
                     <button class="btn btn-success">Send</button>
                 </form>
             </div>
+        </div>
 
 
 

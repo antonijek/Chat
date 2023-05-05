@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Auth;
         @if ($connections->isEmpty())
             <p></p>
         @else
-            <h5 class="text-center p-2">You have friend request from</h5>
-            <table class="table ">
+            <h5 class="p-2">Active request(s)</h5>
+            <table class="table w-50">
                 <thead>
                 <tr>
                     <th>First name</th>
@@ -47,9 +47,12 @@ use Illuminate\Support\Facades\Auth;
                     </form>
                 </div>
                 <div>
-                    <button class="btn btn-danger">Denied</button>
+                    <form action="' . route("connection.reject", $connection->id) . '">
+                        <button class="btn btn-danger">Reject</button>
+                    </form>
+
                 </div>
-            </div>' : '<div class="d-flex justify-content-center"><button class="btn btn-primary">Connection request sent</button></div>' !!}
+            </div>' : '<div class="d-flex justify-content-center"><button class="btn btn-primary disabled">Request sent</button></div>' !!}
 
                         </td>
 
@@ -58,9 +61,9 @@ use Illuminate\Support\Facades\Auth;
                 </tbody>
             </table>
         @endif
-        <div class="bg-success-subtle p-2 pt-4 rounded">
-            <h2 class="text-center"> My Friends </h2>
-            <table class="table">
+        <div class="bg-success-subtle p-4 rounded min-vh-100 ">
+            <h2 class="text-center text-success"> My Friends </h2>
+            <table class="table table-striped table-sm">
                 <thead>
                 <tr>
                     <th>First name</th>

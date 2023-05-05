@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ConnectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(User $user, Connection $connection)
     {
         $user=User::find(Auth::user()->id);
@@ -20,17 +17,11 @@ class ConnectionController extends Controller
         return view('connections.index', ['connections' => $connections, 'friends'=>$friendConnections]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(User $user)
     {
         return view('connections.create',['user'=>$user]) ;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request )
     {
       Connection::query()->create([
@@ -50,25 +41,21 @@ class ConnectionController extends Controller
         return redirect()->route('my-profile');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Connection $connection)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Connection $connection)
     {
         return view('connections.edit',['connection'=>$connection]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function reject(Connection $connection)
+    {
+        return view('connections.reject',['connection'=>$connection]);
+    }
     public function update(Request $request, Connection $connection)
     {
         $connection->update([
@@ -79,9 +66,16 @@ class ConnectionController extends Controller
         return redirect()->route('connection.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function updateReject(Request $request, Connection $connection)
+    {
+        $connection->update([
+            'status'=>$request->status,
+            'sender_id'=>$request->sender_id,
+            'receiver_id'=>$request->receiver_id,
+        ]);
+        return redirect()->route('connection.index');
+    }
+
     public function destroy(Connection $connection)
     {
         //
