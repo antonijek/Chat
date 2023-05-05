@@ -11,7 +11,7 @@
 <body>
 
 
-@if (Auth::check() && Auth::user()->isAdmin())
+
     <x-app-layout>
         <x-slot name="header">
         </x-slot>
@@ -21,12 +21,12 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4 " style="height: 90vh">
 
                     <h3 class="display-5 text-center text-success opacity-50">Users</h3>
-                    <form action="{{ route('users.register') }}"><button class="btn btn-primary mt-4 mb-4">Add new user</button></form>
+                    <form action="{{ route('user.register') }}"><button class="btn btn-primary mt-4 mb-4">Add new user</button></form>
 
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>#</th>
+
                             <th>First name</th>
                             <th>Last name</th>
                             <th>Email</th>
@@ -36,7 +36,7 @@
                         <tbody>
                         @foreach($users as $index=>$user)
                             <tr>
-                                <td>{{ $index+1}}</td>
+
                                 <td>{{ $user->firstName }}</td>
                                 <td>{{ $user->lastName }}</td>
                                 <td>{{ $user->email }}</td>
@@ -76,21 +76,6 @@
 
 
 
-@else {  <x-app-layout>
-    <x-slot name="header">
 
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>}
-
-@endif
 </body>
 </html>

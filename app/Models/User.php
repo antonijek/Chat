@@ -48,5 +48,17 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
+    public function connections()
+    {
+        return $this->belongsToMany(Connection::class,'user_connection')
+            ->where('status','pending');;
 
+    }
+    public function friendConnections()
+    {
+        return $this->belongsToMany(Connection::class,'user_connection')
+            ->where('status','accepted');
+
+    }
 }
+

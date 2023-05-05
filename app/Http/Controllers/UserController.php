@@ -4,10 +4,12 @@ namespace App\Http\Controllers;;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Connection;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -17,12 +19,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $nonAdminUsers = User::where('is_admin', null)->paginate(6);
+        $nonAdminUsers = User::where('isAdmin', 0)->paginate(6);
         return view('dashboard', ['users' =>$nonAdminUsers]);
-
-
     }
 
+    public function showUsersWithoutMyself()
+    {
+        $others = User::where('isAdmin', 0)
+            ->where('firstName', '!=', auth()->user()->firstName)
+            ->paginate(6);
+        $allConnections = Connection::all();
+        return view('users.my-profile', ['users' =>$others, 'allConnections'=>$allConnections]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -38,8 +46,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $validatedData = $request->validated();
-        $user = User::create($validatedData);
+        //$validatedData = $request->validated();
+        $user = User::create([
+            'firstName' => $request->firstName, // ['required', 'string', 'max:250', 'min:3'] is also valid
+            'lastName' => $request->lastName, // ['required', 'string', 'max:250', 'min:3'] is also valid
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
         return redirect(RouteServiceProvider::HOME);
     }
 
