@@ -19,7 +19,12 @@ use Illuminate\Support\Facades\Auth;
     <x-slot name="header">
     </x-slot>
     <body class="bg-success-subtle" style="height: 500px">
-    <div class="container">
+    <div>
+        <a class="btn btn-success ml-4 mt-2" href="{{route('my-profile') }}">
+            Back
+        </a>
+    </div>
+    <div class="container w-50">
 
         @if ($connections->isEmpty())
             <p></p>
@@ -62,7 +67,7 @@ use Illuminate\Support\Facades\Auth;
             </table>
         @endif
         <div class="bg-success-subtle p-4 rounded min-vh-100 ">
-            <h2 class="text-center text-success"> My Friends </h2>
+            <h2 class="text-center text-success mb-4"> My Friends </h2>
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>

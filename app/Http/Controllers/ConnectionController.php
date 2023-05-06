@@ -107,4 +107,5 @@ class ConnectionController extends Controller
 
         return redirect()->route('connection.message', ['friendId' => $connection->id]);
     }
+
 }

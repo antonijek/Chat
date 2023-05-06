@@ -12,8 +12,8 @@
    <x-app-layout>
        <x-slot name="header">
        </x-slot>
-       <div class="py-6 bg-success-subtle  ">
-           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  ">
+       <div class="py-6 bg-success-subtle ">
+           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w-50 ">
                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4 " style="height: 90vh">
                    <h3 class="display-5 text-center text-success opacity-50 mb-5">Expand your network!</h3>
                    <a href="{{route('connection.index')}}" class="btn btn-success pl-4 pr-4">My friends</a>
@@ -68,6 +68,7 @@
                        @endforeach
                        </tbody>
                    </table>
+
                    <div>
                        {{ $users->links() }}
                    </div>
