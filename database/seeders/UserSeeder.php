@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             ],
         ]);
 
-        $this->run1();
+       // $this->run1();
     }
 
     public function run1(): void
