@@ -34,7 +34,7 @@
                     @method('PUT')
                     <div class="mb-2 mt-5">
                         <label for="message" class="form-label">Message</label>
-                        <input type="text" name ="message" class="form-control" id="message">
+                        <input type="text" name ="message" class="form-control rounded" id="message">
                     </div>
                     <input type="hidden" name ="connectionId" value="{{$connection->id}}">
                     <input type="hidden" name ="senderId" value="{{$connection->sender_id}}">
